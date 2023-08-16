@@ -1,5 +1,9 @@
 #pragma once
+#ifdef CMAKE_PROJECT
+#include <GL/glew.h>
+#else
 #include<glew.h>
+#endif
 class Mesh
 {
 public:

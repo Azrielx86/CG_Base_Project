@@ -1,10 +1,14 @@
 #pragma once
-#include<stdio.h>
+#include<stdio.h> // NOLINT(*-deprecated-headers)
 #include<string>
 #include<iostream>
 #include<fstream>
 
+#ifdef CMAKE_PROJECT
+#include <GL/glew.h>
+#else
 #include<glew.h>
+#endif
 
 class Shader
 {

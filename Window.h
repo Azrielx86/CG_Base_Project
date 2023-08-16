@@ -1,7 +1,12 @@
 #pragma once
 #include<stdio.h>
+#ifdef CMAKE_PROJECT
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#else
 #include<glew.h>
 #include<glfw3.h>
+#endif
 
 class Window
 {
