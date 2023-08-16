@@ -1,12 +1,12 @@
 // Archivo inicial semestre 2024-1
-#ifdef LINUX_CMAKE
+#ifdef CMAKE_PROJECT
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <cstdio>
 #else
 #include <glew.h>
 #include <glfw3.h>
-#include <stdio.h>
+#include <cstdio>
 #endif
 // Dimensiones de la ventana
 const int WIDTH = 800, HEIGHT = 600;

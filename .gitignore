@@ -1,6 +1,9 @@
 # Project exclude paths
 /cmake-build-debug/
 /build/
+/glm/
+/include/
+/lib/
 *.dll
 .idea
 *.exe

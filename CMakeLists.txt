@@ -1,34 +1,37 @@
 # File by Azrielx86 (Edgar Chalico)
-cmake_minimum_required(VERSION 3.26)
-project(ProjectName)
+cmake_minimum_required(VERSION 3.7.2)
+project(main)
 set(CMAKE_CXX_STANDARD 17)
 
 # Requires GLEW, OpenGL and GLFW Packages on Linux
 # On Arch Linux: pacman -S glew glfw
-if (UNIX)
-    add_definitions(-DLINUX_CMAKE)
-    message(STATUS "Compiling on Linux or UNIX system.")
-    # FIND PACKAGES FOR OpenGL
-    find_package(OpenGL REQUIRED)
-    if (OpenGL_FOUND)
-        message(STATUS "OpenGL Found")
-    endif ()
 
-    # FIND PACKAGES FOR GLEW AND GLFW
-    find_package(GLEW REQUIRED)
-    if (GLEW_FOUND)
-        message(STATUS "GLEW Found")
-    endif ()
+# Or Windows require install packages with vcpkg with the following command:
+# ./vcpkg install glfw3:x64-windows glfw3:x86-windows glew:x64-windows glew:x86-windows glm:x64-windows glm:x86-windows
 
-    find_package(glfw3 REQUIRED)
-    if (glfw3_FOUND)
-        message(STATUS "GLFW Found")
-    endif ()
-else () # Para Windows se requieren los archivos de OpenGL, GLFW y GLEW
-        # proporcionados en el classroom de la clase.
-    message("Compiling on Windows")
-#    TODO
+add_definitions(-DCMAKE_PROJECT)
+# FIND PACKAGES FOR OpenGL, GLFW and GLEW
+find_package(OpenGL REQUIRED)
+if (OpenGL_FOUND)
+    message(STATUS "OpenGL Found")
 endif ()
 
-add_executable(ProjectName main.cpp)
-target_link_libraries(ProjectName glfw OpenGL::GL GLEW)
+find_package(GLEW REQUIRED)
+if (GLEW_FOUND)
+    message(STATUS "GLEW Found")
+endif ()
+
+find_package(glfw3 REQUIRED)
+if (glfw3_FOUND)
+    message(STATUS "GLFW Found")
+endif ()
+
+add_executable(main main.cpp)
+
+if (UNIX)
+    target_link_libraries(main glfw OpenGL::GL GLEW)
+else ()
+    target_link_libraries(main PRIVATE GLEW::GLEW)
+    target_link_libraries(main PRIVATE glfw)
+endif ()
+
